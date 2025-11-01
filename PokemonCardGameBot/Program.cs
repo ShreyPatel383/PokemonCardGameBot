@@ -22,12 +22,9 @@ public class Program
         _client.Log += Log;
 
         var token = File.ReadAllText("F:\\DiscordToken\\token.txt");
-        Console.WriteLine("1");
         await _client.LoginAsync(TokenType.Bot, token);
-        Console.WriteLine("2");
         await _client.StartAsync();
         commands = new Commands(_client);
-        await commands.Client_Ready();
         await Task.Delay(-1);
 
 
