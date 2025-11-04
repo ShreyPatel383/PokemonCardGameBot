@@ -1,17 +1,21 @@
 ﻿using Discord;
 using Discord.WebSocket;
+using PokemonTcgSdk;
+using PokemonTcgSdk.Standard.Infrastructure.HttpClients;
 using System.Diagnostics;
 
 public class Program
 {
-    public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
 
+    public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
+    PokemonApiClient pokeClient = new PokemonApiClient();
     private DiscordSocketClient _client;
     private Commands commands;
 
-   // public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
+    // public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
     public async Task MainAsync()
     {
+
         var config = new DiscordSocketConfig()
         {
             GatewayIntents = GatewayIntents.Guilds |
@@ -31,7 +35,7 @@ public class Program
     }
     private Task Log(LogMessage msg)
     {
-        Console.WriteLine("3");
+        Console.WriteLine("Task Logged!");
         Console.WriteLine(msg.ToString());
         return Task.CompletedTask;
     }
