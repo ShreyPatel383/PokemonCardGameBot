@@ -6,12 +6,11 @@ using System.Diagnostics;
 
 public class Program
 {
-
+    public string pokemonAPIKey = File.ReadAllText(@"F:\DiscordToken\pokemonAPIKey.txt");
     public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
     PokemonApiClient pokeClient = new PokemonApiClient();
     private DiscordSocketClient _client;
     private Commands commands;
-
     // public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
     public async Task MainAsync()
     {
@@ -28,7 +27,7 @@ public class Program
         var token = File.ReadAllText("F:\\DiscordToken\\token.txt");
         await _client.LoginAsync(TokenType.Bot, token);
         await _client.StartAsync();
-        commands = new Commands(_client);
+        commands = new Commands(_client , pokemonAPIKey );
         await Task.Delay(-1);
 
 
